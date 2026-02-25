@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Commission Portal Finder</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,sans-serif;background:#0f172a;min-height:100vh;padding:24px;color:#e2e8f0}
+  h1{font-size:26px;font-weight:800;color:#38bdf8}
+  p.sub{color:#94a3b8;margin-top:6px;font-size:14px}
+  .center{text-align:center}
+  .wrap{max-width:700px;margin:0 auto}
+  .header{text-align:center;margin-bottom:32px}
+  label.lbl{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600;letter-spacing:1px}
+  select{width:100%;padding:12px 16px;border-radius:10px;background:#1e293b;border:1px solid #334155;color:#e2e8f0;font-size:15px;margin-bottom:20px;outline:none}
+  select:focus{border-color:#38bdf8}
+  .addons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .addon-btn{padding:8px 14px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#94a3b8;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s}
+  .addon-btn.active{border-color:#38bdf8;background:#0c4a6e;color:#38bdf8}
+  .card{background:#1e293b;border-radius:14px;padding:20px;border:1px solid #334155;margin-bottom:16px}
+  .section-title{font-size:12px;color:#94a3b8;margin-bottom:12px;font-weight:700;letter-spacing:1px}
+  .best-banner{background:#064e3b;border:1px solid #10b981;border-radius:14px;padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+  .best-banner .icon{font-size:32px}
+  .best-tag{font-size:11px;color:#6ee7b7;font-weight:700;letter-spacing:1px}
+  .best-name{font-size:17px;font-weight:800;color:#10b981}
+  .best-vals{display:flex;gap:24px;margin-top:6px}
+  .best-val span.num{font-size:24px;font-weight:800;color:#fff}
+  .best-val span.unit{font-size:12px;color:#6ee7b7;margin-left:6px}
+  .best-val span.unit.pts{color:#fcd34d}
+  .grid3{display:grid;grid-template-columns:1fr 120px 110px;gap:8px}
+  .col-hdr{font-size:11px;color:#64748b;font-weight:700}
+  .col-hdr.r{text-align:right}
+  .portal-row{display:grid;grid-template-columns:1fr 120px 110px;gap:8px;padding:12px 10px;border-radius:9px;margin-bottom:6px}
+  .portal-row.best{background:#1a3a2a;border:1px solid #10b981}
+  .portal-row.worst{background:#2a1a1a;border:1px solid #ef4444}
+  .portal-row.neutral{background:#0f172a;border:1px solid #1e293b}
+  .pname{font-size:13px}
+  .pname.best{color:#10b981;font-weight:700}
+  .pname.worst{color:#f87171}
+  .pname.neutral{color:#cbd5e1}
+  .pcomm{font-size:15px;font-weight:700;text-align:right}
+  .pcomm.best{color:#10b981}
+  .pcomm.worst{color:#f87171}
+  .pcomm.neutral{color:#94a3b8}
+  .psp{font-size:15px;font-weight:700;text-align:right}
+  .psp.best{color:#fbbf24}
+  .psp.worst{color:#f87171}
+  .psp.neutral{color:#94a3b8}
+  .loss-card{background:#1e293b;border-radius:14px;padding:20px;border:1px solid #f59e0b;margin-bottom:16px}
+  .loss-title{font-size:12px;color:#f59e0b;margin-bottom:14px;font-weight:700;letter-spacing:1px}
+  .loss-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .loss-box{background:#2d1f07;border-radius:10px;padding:14px 16px;border:1px solid #92400e}
+  .loss-box-title{font-size:11px;color:#fbbf24;font-weight:700;margin-bottom:4px}
+  .loss-num{font-size:28px;font-weight:800;color:#f87171}
+  .loss-sub{font-size:12px;color:#94a3b8;margin-top:4px}
+  .monthly{margin-top:14px;padding:12px 14px;background:#0f172a;border-radius:10px;border:1px solid #334155}
+  .monthly-title{font-size:11px;color:#94a3b8;font-weight:700;margin-bottom:10px;letter-spacing:1px}
+  .monthly-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .monthly-cell{text-align:center;padding:10px 6px;background:#1e293b;border-radius:8px}
+  .monthly-label{font-size:11px;color:#64748b;margin-bottom:4px}
+  .monthly-comm{font-size:16px;font-weight:700;color:#f87171}
+  .monthly-pts{font-size:12px;color:#f97316}
+  .breakdown-row{display:grid;grid-template-columns:1fr 90px 90px;gap:8px;padding:8px 0;border-bottom:1px solid #334155}
+  .breakdown-row.total{border-bottom:none;padding-top:10px}
+  .bitem{font-size:13px;color:#cbd5e1}
+  .bcomm{font-size:13px;color:#38bdf8;text-align:right}
+  .bsp{font-size:13px;color:#fbbf24;text-align:right}
+  .bitem.total{font-size:14px;color:#fff;font-weight:700}
+  .bcomm.total{font-size:14px;color:#10b981;font-weight:700;text-align:right}
+  .bsp.total{font-size:14px;color:#fbbf24;font-weight:700;text-align:right}
+  .note{padding:12px 16px;background:#1c1917;border-radius:10px;border:1px solid #78350f;font-size:13px;color:#fbbf24;margin-bottom:16px}
+  .empty{text-align:center;padding:40px 20px;color:#475569}
+  .empty .icon{font-size:48px;margin-bottom:12px}
+  .clear-wrap{text-align:center;margin-top:24px;margin-bottom:12px}
+  .clear-btn{padding:12px 32px;border-radius:10px;border:1px solid #ef4444;background:transparent;color:#ef4444;cursor:pointer;font-size:15px;font-weight:700;letter-spacing:.5px;transition:all .2s}
+  .clear-btn:hover{background:#ef4444;color:#fff}
+  .hdr-row{padding:6px 10px;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>💰 Commission Portal Finder</h1>
+    <p class="sub">Select provider & package to find the best portal</p>
+  </div>
+
+  <label class="lbl">SELECT PROVIDER</label>
+  <select id="providerSel" onchange="onProviderChange()">
+    <option value="">-- Choose a Provider --</option>
+  </select>
+
+  <label class="lbl" id="tierLbl" style="display:none">SELECT INTERNET TIER</label>
+  <select id="tierSel" style="display:none" onchange="onTierChange()">
+    <option value="">-- Choose a Tier --</option>
+  </select>
+
+  <div id="addonsSection" style="display:none">
+    <label class="lbl">ADD-ONS (optional)</label>
+    <div class="addons" id="addonsContainer"></div>
+  </div>
+
+  <div id="results" style="display:none"></div>
+  <div id="clearWrap" style="display:none" class="clear-wrap">
+    <button class="clear-btn" onclick="clearAll()">🔄 Clear All & Start Over</button>
+  </div>
+
+  <div class="empty" id="emptyState">
+    <div class="icon">📡</div>
+    <p>Select a provider above to see commission details</p>
+  </div>
+</div>
+
+<script>
+const PL = {
+  ibex:"BundleDealer (Ibex)",concert:"Concert (AllConnect)",direct:"Direct Portal",
+  fpp:"Frontier Portal (FPP)",updater:"Updater",buyflow:"Optimum Buyflow",
+  quantum:"Quantum Portal",lumen:"CenturyLink Lumen Portal",dsi:"BundleDealer (DSI)"
+};
+const KEYS = Object.keys(PL);
+
+const D = {
+  "Spectrum":{internet:[
+    {n:"50/100",ibex:4,concert:7.5,ibex_sp:10,concert_sp:19},
+    {n:"500",ibex:12,concert:9,ibex_sp:26,concert_sp:19},
+    {n:"1 Gig",ibex:16.5,concert:14.85,ibex_sp:27,concert_sp:27},
+    {n:"2 Gig",ibex:18,concert:22.5,ibex_sp:31,concert_sp:30}],
+  addons:{"TV - Stream":{ibex:4.5,concert:4.5,ibex_sp:6,concert_sp:4},"TV - Select":{ibex:7.5,concert:7.5,ibex_sp:8,concert_sp:4},"Voice":{ibex:4.5,concert:4.5,ibex_sp:6,concert_sp:2},"Mobile - First Line":{ibex:1,concert:1,ibex_sp:6,concert_sp:2},"Mobile - Additional Lines":{ibex:20,concert:20,ibex_sp:15,concert_sp:2}},
+  note:"All video and mobile sales must be tied to an Internet sale"},
+
+  "AltaFiber":{internet:[
+    {n:"DSL",ibex:3,ibex_sp:4},{n:"Fiber <=50 Mbps",ibex:4,ibex_sp:5},
+    {n:"Fiber >50 Mbps - 750 Mbps",ibex:5,ibex_sp:7},{n:"Fiber >750 Mbps",ibex:6,ibex_sp:8}],addons:{}},
+
+  "Astound":{internet:[
+    {n:"50 Mbps",direct:2,direct_sp:8},{n:"150 Mbps",direct:5,direct_sp:13},
+    {n:"300 Mbps",direct:7,direct_sp:17},{n:"600 Mbps",direct:11,direct_sp:21},
+    {n:"1 Gig",direct:13,direct_sp:28},{n:"1.5 Gig",direct:15,direct_sp:28},{n:"2 Gig",direct:15,direct_sp:28}],
+  addons:{"TV":{direct:3,direct_sp:4},"Mobile - First Line (COP)":{direct:1,direct_sp:2},"Mobile - Additional Lines (COP)":{direct:3,direct_sp:6}}},
+
+  "AT&T":{internet:[{n:"<500 Mbps",concert:3,concert_sp:13},{n:">500 Mbps",concert:10,concert_sp:23}],
+  addons:{"TV":{concert:3,concert_sp:7}}},
+
+  "Breezeline":{internet:[{n:"Internet",concert:2,ibex:1,concert_sp:8,ibex_sp:4}],
+  addons:{"TV":{concert:2,ibex:null,concert_sp:5,ibex_sp:null},"Voice":{concert:1,ibex:null,concert_sp:3,ibex_sp:null}},
+  note:"Use AllConnect — pays more"},
+
+  "BrightSpeed":{internet:[{n:"DSL Internet",updater:5,updater_sp:16},{n:"Fiber Internet",updater:10,updater_sp:23}],
+  addons:{"Voice":{updater:2,updater_sp:4}}},
+
+  "Buckeye":{internet:[{n:"All Internet",concert:2,concert_sp:4}],addons:{},
+  note:"⚠️ Do NOT use Ibex ($1 only)"},
+
+  "ClearWave Fiber":{internet:[{n:"Internet",ibex:1,ibex_sp:4}],addons:{}},
+
+  "COX":{internet:[
+    {n:"100 Mbps",concert:3,ibex:1,concert_sp:10,ibex_sp:3},{n:"250 Mbps",concert:3.5,ibex:1,concert_sp:10,ibex_sp:3},
+    {n:"300 Mbps",concert:4,ibex:1,concert_sp:10,ibex_sp:3},{n:"500 Mbps",concert:4.5,ibex:1,concert_sp:13,ibex_sp:3},
+    {n:"1 Gig",concert:5,ibex:1,concert_sp:13,ibex_sp:4},{n:"2 Gig",concert:5.5,ibex:1,concert_sp:13,ibex_sp:4}],
+  addons:{"TV":{concert:3,ibex:1,concert_sp:5,ibex_sp:4}},
+  note:"⚠️ Always use Concert — Ibex only pays $1"},
+
+  "Earthlink":{internet:[
+    {n:"Wired <100 Mbps",ibex:4,ibex_sp:14},{n:"Wired 100 Mbps+",ibex:5,ibex_sp:21},
+    {n:"Wireless",ibex:3,ibex_sp:6},{n:"Fixed Wireless Unlimited",ibex:4,ibex_sp:12}],addons:{}},
+
+  "Frontier":{internet:[
+    {n:"Copper (Concert)",concert:3,fpp:3,concert_sp:5,fpp_sp:5},
+    {n:"All Fiber (Concert)",concert:10,fpp:null,concert_sp:25,fpp_sp:null},
+    {n:"Fiber 100 (FPP)",concert:null,fpp:5,concert_sp:null,fpp_sp:18},
+    {n:"Fiber 500 (FPP)",concert:null,fpp:6,concert_sp:null,fpp_sp:19},
+    {n:"Fiber 1G (FPP)",concert:null,fpp:7,concert_sp:null,fpp_sp:20},
+    {n:"Fiber 2G (FPP)",concert:null,fpp:8,concert_sp:null,fpp_sp:22},
+    {n:"Fiber 5G (FPP)",concert:null,fpp:9,concert_sp:null,fpp_sp:25}],
+  addons:{"TV (YouTube TV)":{concert:3,fpp:3,concert_sp:3,fpp_sp:3},"Voice":{concert:3,fpp:3,concert_sp:3,fpp_sp:3}},
+  note:"For Fiber tiers use FPP. All video/mobile must be tied to Internet sale."},
+
+  "Hawaiian Telecom":{internet:[{n:"<1 Gig",ibex:2,ibex_sp:5},{n:"1 Gig",ibex:4,ibex_sp:11}],addons:{}},
+
+  "HughesNet":{internet:[{n:"Internet",ibex:4,ibex_sp:12}],addons:{"Voice":{ibex:1,ibex_sp:2}}},
+
+  "Fidium":{internet:[
+    {n:"100 Mbps",ibex:2,ibex_sp:6},{n:"300 Mbps",ibex:5,ibex_sp:7},
+    {n:"1 Gig",ibex:4,ibex_sp:9},{n:"2 Gig",ibex:5,ibex_sp:10}],addons:{}},
+
+  "Mediacom":{internet:[
+    {n:"100 Mbps",concert:2,concert_sp:3},{n:"200 Mbps",concert:2,concert_sp:3},
+    {n:"500 Mbps",concert:2,concert_sp:3},{n:"1 Gig",concert:2,concert_sp:3}],
+  addons:{},note:"⚠️ Do NOT use Ibex ($0 commission, 0 points)"},
+
+  "Metronet":{internet:[{n:"<=500 MB (Ibex)",ibex:2,ibex_sp:6},{n:"1 Gig (DSI)",ibex:4,ibex_sp:15}],
+  addons:{"Phone (DSI)":{ibex:2,ibex_sp:3},"Whole Home Wifi":{ibex:1,ibex_sp:2}}},
+
+  "Optimum":{internet:[
+    {n:"Under 300",buyflow:1.5,buyflow_sp:5},{n:"300",buyflow:7.5,buyflow_sp:10},
+    {n:"500",buyflow:15,buyflow_sp:20},{n:"1 GB",buyflow:18,buyflow_sp:25},
+    {n:"2 GB",buyflow:22.5,buyflow_sp:32},{n:"5 GB and Higher",buyflow:30,buyflow_sp:40}],
+  addons:{"TV - Basic":{buyflow:4.5,buyflow_sp:4},"TV - Extra":{buyflow:4.5,buyflow_sp:4},"TV - Everything":{buyflow:7.5,buyflow_sp:7},"TV - Entertainment":{buyflow:7.5,buyflow_sp:7},"TV - Core":{buyflow:7.5,buyflow_sp:7},"TV - Select":{buyflow:7.5,buyflow_sp:7},"TV - Premier":{buyflow:9,buyflow_sp:8},"Mobile Transfer - First Line":{buyflow:15,buyflow_sp:12},"Mobile - Additional Lines":{buyflow:7.5,buyflow_sp:4}},
+  note:"All video and mobile sales must be tied to an Internet sale"},
+
+  "Quantum Fiber":{internet:[
+    {n:"500 Mbps",quantum:4,quantum_sp:14},{n:"1 Gig",quantum:5,quantum_sp:17},{n:"2 Gig",quantum:7,quantum_sp:17}],addons:{}},
+
+  "CenturyLink/Lumen":{internet:[
+    {n:"<10 Mbps",lumen:1,lumen_sp:10},{n:"10 Mbps",lumen:2,lumen_sp:11},{n:"20 Mbps",lumen:2,lumen_sp:11},
+    {n:"30 Mbps",lumen:2,lumen_sp:11},{n:"40 Mbps",lumen:2,lumen_sp:13},{n:"50 Mbps",lumen:2,lumen_sp:13},
+    {n:"100 Mbps",lumen:3,lumen_sp:14},{n:"500 Mbps",lumen:4,lumen_sp:14},{n:"1 Gig",lumen:5,lumen_sp:17},{n:"2 Gig",lumen:6,lumen_sp:17}],addons:{}},
+
+  "Starry":{internet:[
+    {n:"<200 Mbps",updater:2,updater_sp:8},{n:"200-500 Mbps",updater:4,updater_sp:12},{n:"800 Mbps - 1 Gig",updater:6,updater_sp:12}],addons:{}},
+
+  "TDS":{internet:[{n:"Internet",ibex:1,ibex_sp:2}],
+  addons:{"TV":{ibex:1,ibex_sp:2},"Voice":{ibex:1,ibex_sp:2}}},
+
+  "T-Mobile":{internet:[
+    {n:"5G Internet",concert:2,concert_sp:6},{n:"Home Internet Lite 100 GB",concert:2.5,concert_sp:7},
+    {n:"All-In Home Internet",concert:2.5,concert_sp:8},{n:"Home Internet Lite 150 GB",concert:3,concert_sp:10}],
+  addons:{"Clearlink Transfer Sale":{concert:3,concert_sp:4}}},
+
+  "Verizon":{internet:[
+    {n:"Fios under 1 Gig",concert:3,concert_sp:4},{n:"Fios 1 Gig and higher",concert:5,concert_sp:12},
+    {n:"5G",concert:4,concert_sp:11},{n:"4G",concert:2,concert_sp:5}],addons:{}},
+
+  "Viasat":{internet:[{n:"All Internet",direct:15,direct_sp:18}],
+  addons:{"Voice":{direct:3,direct_sp:4}}},
+
+  "Windstream Kinetic":{internet:[
+    {n:"Kinetic Internet",ibex:5,ibex_sp:19},{n:"Kinetic Fiber",ibex:13,ibex_sp:32},
+    {n:"Kinetic Fiber Gig",ibex:17,ibex_sp:40},{n:"Multi GIG",ibex:18,ibex_sp:40}],
+  addons:{},note:"Rates only available in Ibex"},
+
+  "WOW":{internet:[
+    {n:"Internet 100-300",ibex:3,ibex_sp:13},{n:"Internet 500-600",ibex:3.5,ibex_sp:14},
+    {n:"1 Gig",ibex:5,ibex_sp:16},{n:"2 Gig",ibex:6,ibex_sp:18},{n:"3 and 5 Gig",ibex:7,ibex_sp:20}],
+  addons:{"TV (YouTube TV)":{ibex:3,ibex_sp:3},"Home Phone":{ibex:3,ibex_sp:3}}},
+
+  "Xfinity":{internet:[
+    {n:"Connect - 150 Mbps",concert:4,updater:3,concert_sp:11,updater_sp:7},
+    {n:"Connect More - 300 Mbps",concert:4.5,updater:3.5,concert_sp:11,updater_sp:10},
+    {n:"Connect More - 400 Mbps",concert:5,updater:3.5,concert_sp:11,updater_sp:10},
+    {n:"Fast - 600 Mbps",concert:11,updater:7,concert_sp:16,updater_sp:10},
+    {n:"Superfast - 1100 Mbps",concert:11,updater:7,concert_sp:16,updater_sp:10},
+    {n:"Ultrafast - 1300 Mbps",concert:11,updater:7,concert_sp:16,updater_sp:10},
+    {n:"Ultrafast - 2000 Mbps",concert:12,updater:8,concert_sp:16,updater_sp:10}],
+  addons:{"TV - Choice":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Popular":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Ultimate":{concert:6,updater:4,concert_sp:11,updater_sp:2},"Voice - Unlimited":{concert:3,updater:3,concert_sp:4,updater_sp:4},"Voice - Unlimited Saver":{concert:3,updater:null,concert_sp:2,updater_sp:null},"Voice - Unlimited Select":{concert:3,updater:null,concert_sp:2,updater_sp:null},"Home Security":{concert:12,updater:8,concert_sp:17,updater_sp:3}},
+  note:"⚠️ Always use Concert — pays more across all tiers"},
+
+  "Ziply":{internet:[
+    {n:"Fiber <200 Mbps",dsi:1,dsi_sp:6},{n:"Fiber 200 Mbps - <1 Gig",dsi:2,dsi_sp:8},
+    {n:"Fiber 1 Gig",dsi:4,dsi_sp:12},{n:"Fiber 2 Gig",dsi:6,dsi_sp:20},
+    {n:"Fiber 5 Gig",dsi:8,dsi_sp:24},{n:"Fiber 10 Gig",dsi:10,dsi_sp:28}],addons:{}}
+};
+
+let selAddons = [];
+
+// Populate provider dropdown
+const ps = document.getElementById('providerSel');
+Object.keys(D).sort().forEach(p => {
+  const o = document.createElement('option');
+  o.value = p; o.textContent = p;
+  ps.appendChild(o);
+});
+
+function onProviderChange() {
+  const p = ps.value;
+  selAddons = [];
+  const ts = document.getElementById('tierSel');
+  const tl = document.getElementById('tierLbl');
+  const as = document.getElementById('addonsSection');
+  const ac = document.getElementById('addonsContainer');
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('clearWrap').style.display = p ? 'block' : 'none';
+  document.getElementById('emptyState').style.display = p ? 'none' : 'block';
+
+  if (!p) { ts.style.display='none'; tl.style.display='none'; as.style.display='none'; return; }
+
+  const prov = D[p];
+  ts.innerHTML = '<option value="">-- Choose a Tier --</option>';
+  prov.internet.forEach(t => {
+    const o = document.createElement('option'); o.value = t.n; o.textContent = t.n; ts.appendChild(o);
+  });
+  ts.style.display = 'block'; tl.style.display = 'block';
+
+  ac.innerHTML = '';
+  const addKeys = Object.keys(prov.addons);
+  if (addKeys.length) {
+    addKeys.forEach(a => {
+      const btn = document.createElement('button');
+      btn.className = 'addon-btn'; btn.textContent = a;
+      btn.onclick = () => {
+        if (selAddons.includes(a)) selAddons = selAddons.filter(x=>x!==a);
+        else selAddons.push(a);
+        btn.classList.toggle('active', selAddons.includes(a));
+        render();
+      };
+      ac.appendChild(btn);
+    });
+    as.style.display = 'block';
+  } else { as.style.display = 'none'; }
+  render();
+}
+
+function onTierChange() { render(); }
+
+function render() {
+  const p = document.getElementById('providerSel').value;
+  const tier = document.getElementById('tierSel').value;
+  const res = document.getElementById('results');
+  if (!p || !tier) { res.style.display='none'; res.innerHTML=''; return; }
+
+  const prov = D[p];
+  const tierObj = prov.internet.find(i => i.n === tier);
+  if (!tierObj) return;
+
+  // Calc totals
+  const totals = {};
+  KEYS.forEach(k => {
+    if (tierObj[k] == null) return;
+    let comm = tierObj[k], sp = tierObj[k+'_sp']||0;
+    selAddons.forEach(a => {
+      const ao = prov.addons[a];
+      if (ao && ao[k] != null) { comm += ao[k]; sp += ao[k+'_sp']||0; }
+    });
+    totals[k] = {comm, sp};
+  });
+
+  const entries = Object.entries(totals);
+  let bestK=null, bestC=-1, bestS=-1;
+  entries.forEach(([k,v]) => {
+    if (v.comm > bestC || (v.comm===bestC && v.sp>bestS)) { bestC=v.comm; bestS=v.sp; bestK=k; }
+  });
+  let worstK=null, worstC=Infinity, worstS=Infinity;
+  if (entries.length>1) entries.forEach(([k,v]) => { if(v.comm<worstC){worstC=v.comm;worstS=v.sp;worstK=k;} });
+  const lostC = (bestK&&worstK&&bestK!==worstK) ? bestC-worstC : 0;
+  const lostS = (bestK&&worstK&&bestK!==worstK) ? bestS-worstS : 0;
+
+  let html = '';
+
+  // Best banner
+  html += `<div class="best-banner">
+    <div class="icon">🏆</div>
+    <div style="flex:1">
+      <div class="best-tag">BEST PORTAL TO USE</div>
+      <div class="best-name">${PL[bestK]}</div>
+      <div class="best-vals">
+        <div class="best-val"><span class="num">$${bestC.toFixed(2)}</span><span class="unit">commission</span></div>
+        <div class="best-val"><span class="num" style="color:#fbbf24">${bestS}</span><span class="unit pts">sales points</span></div>
+      </div>
+    </div>
+  </div>`;
+
+  // Comparison table
+  html += `<div class="card">
+    <div class="section-title">PORTAL COMPARISON</div>
+    <div class="grid3 hdr-row">
+      <span class="col-hdr">PORTAL</span>
+      <span class="col-hdr r">COMMISSION</span>
+      <span class="col-hdr r">SALES PTS</span>
+    </div>`;
+  entries.forEach(([k,v]) => {
+    const isBest = k===bestK, isWorst = k===worstK && entries.length>1;
+    const cls = isBest?'best':isWorst?'worst':'neutral';
+    const icon = isBest?'✅ ':isWorst?'❌ ':'';
+    html += `<div class="portal-row ${cls}">
+      <span class="pname ${cls}">${icon}${PL[k]}</span>
+      <span class="pcomm ${cls}">$${v.comm.toFixed(2)}</span>
+      <span class="psp ${cls}">⭐ ${v.sp}</span>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Loss card
+  if (entries.length>1 && lostC>0) {
+    html += `<div class="loss-card">
+      <div class="loss-title">⚠️ WHAT YOU LOSE USING THE WRONG PORTAL</div>
+      <div class="loss-grid">
+        <div class="loss-box">
+          <div class="loss-box-title">💸 LOST COMMISSION</div>
+          <div class="loss-num">-$${lostC.toFixed(2)}</div>
+          <div class="loss-sub">per sale using ${PL[worstK]}</div>
+        </div>
+        <div class="loss-box">
+          <div class="loss-box-title">⭐ LOST SALES POINTS</div>
+          <div class="loss-num">-${lostS} pts</div>
+          <div class="loss-sub">per sale using ${PL[worstK]}</div>
+        </div>
+      </div>
+      <div class="monthly">
+        <div class="monthly-title">📊 MONTHLY IMPACT (if using wrong portal)</div>
+        <div class="monthly-grid">
+          ${[5,10,20].map(n=>`<div class="monthly-cell">
+            <div class="monthly-label">${n} sales/mo</div>
+            <div class="monthly-comm">-$${(lostC*n).toFixed(2)}</div>
+            <div class="monthly-pts">-${lostS*n} pts</div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Breakdown
+  html += `<div class="card">
+    <div class="section-title">BREAKDOWN (BEST PORTAL)</div>
+    <div style="display:grid;grid-template-columns:1fr 90px 90px;gap:8px;padding:4px 0 8px">
+      <span style="font-size:11px;color:#64748b;font-weight:700">ITEM</span>
+      <span style="font-size:11px;color:#64748b;font-weight:700;text-align:right">COMM.</span>
+      <span style="font-size:11px;color:#64748b;font-weight:700;text-align:right">PTS</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="bitem">🌐 Internet (${tier})</span>
+      <span class="bcomm">$${(tierObj[bestK]||0).toFixed(2)}</span>
+      <span class="bsp">⭐ ${tierObj[bestK+'_sp']||0}</span>
+    </div>`;
+  selAddons.forEach(a => {
+    const ao = prov.addons[a];
+    const v = ao?(ao[bestK]??0):0;
+    const s = ao?(ao[bestK+'_sp']??0):0;
+    html += `<div class="breakdown-row">
+      <span class="bitem">➕ ${a}</span>
+      <span class="bcomm">$${v.toFixed(2)}</span>
+      <span class="bsp">⭐ ${s}</span>
+    </div>`;
+  });
+  html += `<div class="breakdown-row total">
+    <span class="bitem total">TOTAL</span>
+    <span class="bcomm total">$${bestC.toFixed(2)}</span>
+    <span class="bsp total">⭐ ${bestS}</span>
+  </div></div>`;
+
+  if (prov.note) html += `<div class="note">⚠️ ${prov.note}</div>`;
+
+  res.innerHTML = html;
+  res.style.display = 'block';
+}
+
+function clearAll() {
+  document.getElementById('providerSel').value = '';
+  document.getElementById('tierSel').style.display = 'none';
+  document.getElementById('tierLbl').style.display = 'none';
+  document.getElementById('addonsSection').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('clearWrap').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'block';
+  selAddons = [];
+}
+</script>
+</body>
+</html>
