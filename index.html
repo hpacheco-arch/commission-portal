@@ -220,7 +220,8 @@ const PORTAL_URLS = {
 
 let D = {
   "Spectrum":{internet:[
-    {n:"50/100",ibex:4,concert:7.5,ibex_sp:10,concert_sp:19},
+    {n:"50 Mbps",ibex:4,concert:7.5,ibex_sp:10,concert_sp:19},
+    {n:"100 Mbps",ibex:4,concert:7.5,ibex_sp:10,concert_sp:19},
     {n:"500",ibex:12,concert:9,ibex_sp:26,concert_sp:19},
     {n:"1 Gig",ibex:16.5,concert:14.85,ibex_sp:27,concert_sp:27},
     {n:"2 Gig",ibex:18,concert:22.5,ibex_sp:31,concert_sp:30}],
@@ -392,7 +393,12 @@ function render(){
     else if(p==='Optimum')allowedKeys=['buyflow'];
     else if(p==='Frontier')allowedKeys=['concert','fpp'];
     else allowedKeys=KEYS;
-  }else{allowedKeys=KEYS;}
+  } else {
+    allowedKeys=KEYS;
+  }
+
+  // Voice Consent special rule: Spectrum 100 Mbps & 1 Gig → Concert first, Ibex second
+  const spectrumConcertFirst = consent==='voice' && p==='Spectrum' && (tier==='100 Mbps'||tier==='1 Gig');
   const totals={};
   allowedKeys.forEach(k=>{
     if(tierObj[k]==null)return;
@@ -403,7 +409,12 @@ function render(){
   const entries=Object.entries(totals);
   if(!entries.length){res.innerHTML='<div class="note-box">⚠️ No portal data for this selection.</div>';return;}
   let bk=null,bc=-1,bs=-1;
-  entries.forEach(([k,v])=>{if(v.comm>bc||(v.comm===bc&&v.sp>bs)){bc=v.comm;bs=v.sp;bk=k;}});
+  // If Spectrum 100 Mbps or 1 Gig on Voice Consent → force Concert as best
+  if(spectrumConcertFirst && totals['concert']){
+    bk='concert'; bc=totals['concert'].comm; bs=totals['concert'].sp;
+  } else {
+    entries.forEach(([k,v])=>{if(v.comm>bc||(v.comm===bc&&v.sp>bs)){bc=v.comm;bs=v.sp;bk=k;}});
+  }
   let wk=null,wc=Infinity;
   if(entries.length>1)entries.forEach(([k,v])=>{if(v.comm<wc){wc=v.comm;wk=k;}});
   const lc=(bk&&wk&&bk!==wk)?bc-wc:0;
@@ -411,7 +422,9 @@ function render(){
   const sigLabel=p==='Spectrum'?'BundleDealer (Ibex)':p==='Optimum'?'Optimum Buyflow':'Concert (AllConnect) / FPP';
   const consentLabel=consent==='signature'
     ?`<div style="margin-top:6px;font-size:11px;color:#6ee7b7">🔴 Voice Signature — ${sigLabel}</div>`
-    :`<div style="margin-top:6px;font-size:11px;color:#6ee7b7">📞 Voice Consent</div>`;
+    :spectrumConcertFirst
+      ?`<div style="margin-top:6px;font-size:11px;color:#fbbf24">📞 Voice Consent — ⚠️ Try Concert first, Ibex if needed</div>`
+      :`<div style="margin-top:6px;font-size:11px;color:#6ee7b7">📞 Voice Consent</div>`;
   const portalUrl=PORTAL_URLS[bk]||null;
   const openBtn=portalUrl
     ?`<a href="${portalUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 18px;background:#38bdf8;color:#0f172a;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">🚀 Open Portal</a>`:'';
