@@ -17,9 +17,8 @@ body{font-family:Inter,sans-serif;background:#0f172a;min-height:100vh;color:#e2e
 .page{display:none;padding:24px}
 .page.active{display:block}
 .wrap{max-width:700px;margin:0 auto}
-.wrap-wide{max-width:960px;margin:0 auto}
+.wrap-wide{max-width:900px;margin:0 auto}
 h1{font-size:26px;font-weight:800;color:#38bdf8}
-.sub{color:#94a3b8;margin-top:6px;font-size:14px}
 .header{text-align:center;margin-bottom:32px}
 label.lbl{font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;font-weight:600;letter-spacing:1px}
 select,input[type=text],input[type=number]{width:100%;padding:11px 14px;border-radius:9px;background:#1e293b;border:1px solid #334155;color:#e2e8f0;font-size:14px;outline:none}
@@ -45,7 +44,7 @@ select{margin-bottom:20px}
 .col-h.r{text-align:right}
 .pn{font-size:13px}.pn.best{color:#10b981;font-weight:700}.pn.worst{color:#f87171}.pn.neutral{color:#cbd5e1}
 .pv{font-size:15px;font-weight:700;text-align:right}.pv.best{color:#10b981}.pv.worst{color:#f87171}.pv.neutral{color:#94a3b8}
-.ps{font-size:15px;font-weight:700;text-align:right}.ps.best{color:#fbbf24}.ps.worst{color:#f87171}.ps.neutral{color:#94a3b8}
+.ps2{font-size:15px;font-weight:700;text-align:right}.ps2.best{color:#fbbf24}.ps2.worst{color:#f87171}.ps2.neutral{color:#94a3b8}
 .loss-card{background:#1e293b;border-radius:14px;padding:20px;border:1px solid #f59e0b;margin-bottom:16px}
 .loss-title{font-size:12px;color:#f59e0b;margin-bottom:14px;font-weight:700;letter-spacing:1px}
 .loss-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -84,21 +83,19 @@ select{margin-bottom:20px}
 .prov-card-hdr:hover{background:#263348}
 .prov-card-title{font-size:15px;font-weight:700;color:#e2e8f0}
 .prov-card-meta{font-size:12px;color:#64748b;margin-top:2px}
-.prov-card-body{padding:0 18px 18px;display:none;border-top:1px solid #334155;padding-top:16px}
+.prov-card-body{padding:16px 18px 18px;display:none;border-top:1px solid #334155}
 .prov-card-body.open{display:block}
-.tier-table{width:100%;border-collapse:collapse;margin-bottom:16px}
-.tier-table th{font-size:11px;color:#64748b;font-weight:700;padding:6px 8px;text-align:left;border-bottom:1px solid #334155}
-.tier-table td{padding:6px 6px;border-bottom:1px solid #1e293b;vertical-align:middle}
-.tier-table input{padding:7px 9px;font-size:13px;border-radius:6px;width:90px}
-.tn-input{width:160px!important}
-.tier-table tr:last-child td{border-bottom:none}
-.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
-.tag-ibex{background:#1e3a5f;color:#7dd3fc}.tag-concert{background:#1a3a2a;color:#6ee7b7}.tag-other{background:#2d1f07;color:#fbbf24}
-.sec-sub{font-size:12px;color:#94a3b8;font-weight:700;letter-spacing:1px;margin:14px 0 8px}
-.note-input{width:100%;padding:9px 12px;border-radius:8px;background:#0f172a;border:1px solid #334155;color:#fbbf24;font-size:13px;margin-top:8px}
-.note-input:focus{border-color:#f59e0b;outline:none}
-.toast{position:fixed;bottom:24px;right:24px;background:#10b981;color:#fff;padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
-.toast.show{opacity:1}
+.sec-sub{font-size:12px;color:#94a3b8;font-weight:700;letter-spacing:1px;margin:14px 0 10px}
+/* Simplified tier rows */
+.tier-row{display:grid;gap:8px;align-items:center;padding:10px 12px;background:#0f172a;border-radius:10px;margin-bottom:8px;border:1px solid #1e293b}
+.tier-row input[type=text]{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:8px 10px;border-radius:7px;font-size:13px;width:100%}
+.tier-row input[type=number]{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:8px 10px;border-radius:7px;font-size:13px;width:100%}
+.tier-row select{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:8px 10px;border-radius:7px;font-size:13px;margin-bottom:0;width:100%}
+.field-lbl{font-size:10px;color:#64748b;font-weight:700;letter-spacing:.5px;margin-bottom:3px}
+.portal-block{background:#1a2744;border-radius:8px;padding:10px;border:1px solid #263a5e}
+.portal-block-title{font-size:11px;color:#7dd3fc;font-weight:700;margin-bottom:8px}
+.portal-entry{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;align-items:end}
+.add-portal-row{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
 .pw-screen{display:flex;align-items:center;justify-content:center;min-height:60vh}
 .pw-card{background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;text-align:center;width:100%;max-width:360px}
 .pw-card h3{font-size:18px;font-weight:800;color:#38bdf8;margin-bottom:8px}
@@ -106,8 +103,14 @@ select{margin-bottom:20px}
 .pw-card input{margin-bottom:12px;text-align:center;letter-spacing:4px;font-size:16px}
 .err{color:#f87171;font-size:13px;margin-top:8px}
 .flex-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.add-prov-form{background:#0f172a;border-radius:10px;padding:16px;border:1px solid #334155;margin-bottom:16px;display:none}
-.add-prov-form.open{display:block}
+.note-input{width:100%;padding:9px 12px;border-radius:8px;background:#0f172a;border:1px solid #334155;color:#fbbf24;font-size:13px}
+.note-input:focus{border-color:#f59e0b;outline:none}
+.toast{position:fixed;bottom:24px;right:24px;background:#10b981;color:#fff;padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-right:4px}
+.badge-ibex{background:#1e3a5f;color:#7dd3fc}
+.badge-concert{background:#1a3a2a;color:#6ee7b7}
+.badge-other{background:#2d1f07;color:#fbbf24}
 </style>
 </head>
 <body>
@@ -115,8 +118,8 @@ select{margin-bottom:20px}
 <div class="nav">
   <div class="nav-title">💰 Commission Portal Finder</div>
   <div class="nav-tabs">
-    <button class="nav-tab active" id="tab-lookup" onclick="switchTab('lookup',this)">🔍 Lookup</button>
-    <button class="nav-tab inactive" id="tab-admin" onclick="switchTab('admin',this)">⚙️ Admin</button>
+    <button class="nav-tab active" onclick="switchTab('lookup',this)">🔍 Lookup</button>
+    <button class="nav-tab inactive" onclick="switchTab('admin',this)">⚙️ Admin</button>
   </div>
 </div>
 
@@ -125,7 +128,7 @@ select{margin-bottom:20px}
   <div class="wrap">
     <div class="header" style="margin-top:16px">
       <h1>💰 Commission Portal Finder</h1>
-      <p class="sub">Select consent type & provider to find the best portal</p>
+      <p style="color:#94a3b8;margin-top:6px;font-size:14px">Select consent type & provider to find the best portal</p>
     </div>
 
     <label class="lbl">CONSENT TYPE</label>
@@ -146,17 +149,13 @@ select{margin-bottom:20px}
 
     <label class="lbl">SELECT PROVIDER</label>
     <select id="providerSel" onchange="onProviderChange()"><option value="">-- Choose a Provider --</option></select>
-
     <label class="lbl" id="tierLbl" style="display:none">SELECT INTERNET TIER</label>
     <select id="tierSel" style="display:none" onchange="render()"><option value="">-- Choose a Tier --</option></select>
-
     <div id="addonsSection" style="display:none">
       <label class="lbl">ADD-ONS (optional)</label>
       <div class="addons" id="addonsContainer"></div>
     </div>
-
     <div id="results"></div>
-
     <div id="clearWrap" style="display:none" class="clear-wrap">
       <button class="clear-btn" onclick="clearAll()">🔄 Clear All & Start Over</button>
     </div>
@@ -177,59 +176,23 @@ select{margin-bottom:20px}
         <p>Enter the admin password to manage commission rates</p>
         <input type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()"/>
         <br/>
-        <button class="btn btn-primary" style="width:100%;padding:11px" onclick="checkPw()">Unlock Admin Panel</button>
+        <button class="btn btn-primary" style="width:100%;padding:11px;margin-top:4px" onclick="checkPw()">Unlock Admin Panel</button>
         <div class="err" id="pwErr"></div>
       </div>
     </div>
+
     <div id="adminPanel" style="display:none">
       <div class="admin-header">
         <div>
           <h2>⚙️ Admin Panel</h2>
-          <p style="font-size:13px;color:#64748b;margin-top:2px">Edit commission rates and sales points</p>
+          <p style="font-size:13px;color:#64748b;margin-top:2px">Click a provider to edit its rates</p>
         </div>
         <div class="flex-row">
-          <button class="btn btn-warn" onclick="toggleAddProv()">➕ Add Provider</button>
           <button class="btn btn-success" onclick="saveChanges()">💾 Save & Apply</button>
           <button class="btn btn-danger btn-sm" onclick="lockAdmin()">🔒 Lock</button>
         </div>
       </div>
-      <div class="add-prov-form card" id="addProvForm">
-        <div class="sec-title">NEW PROVIDER</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-          <div><label class="lbl">Provider Name</label><input type="text" id="newPN" placeholder="e.g. Comcast"/></div>
-          <div><label class="lbl">Portal Name</label><input type="text" id="newPPortal" placeholder="e.g. BundleDealer (Ibex)"/></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px">
-          <div><label class="lbl">Portal Key</label>
-            <select id="newPKey">
-              <option value="ibex">ibex</option><option value="concert">concert</option>
-              <option value="direct">direct</option><option value="fpp">fpp</option>
-              <option value="updater">updater</option><option value="buyflow">buyflow</option>
-              <option value="quantum">quantum</option><option value="lumen">lumen</option><option value="dsi">dsi</option>
-            </select>
-          </div>
-          <div><label class="lbl">First Tier Name</label><input type="text" id="newTN" placeholder="e.g. 1 Gig"/></div>
-          <div><label class="lbl">Commission ($)</label><input type="number" id="newTC" step="0.01" placeholder="0.00"/></div>
-          <div><label class="lbl">Sales Points</label><input type="number" id="newTS" placeholder="0"/></div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-success" onclick="addProvider()">✅ Add Provider</button>
-          <button class="btn btn-danger" onclick="toggleAddProv()">Cancel</button>
-        </div>
-      </div>
       <div class="provider-list" id="adminProvList"></div>
-      <div class="card" style="margin-top:16px">
-        <div class="sec-title">📤 EXPORT DATA (for GitHub backup)</div>
-        <p style="font-size:13px;color:#94a3b8;margin-bottom:10px">Copy this JSON and save it somewhere safe. Paste it back using Import to restore data.</p>
-        <div class="flex-row">
-          <button class="btn btn-primary btn-sm" onclick="exportData()">📋 Copy Export JSON</button>
-          <button class="btn btn-warn btn-sm" onclick="toggleImport()">📥 Import JSON</button>
-        </div>
-        <div id="importBox" style="display:none;margin-top:12px">
-          <textarea id="importTA" style="width:100%;height:180px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#94a3b8;font-size:12px;font-family:monospace;padding:10px;resize:vertical;outline:none" placeholder="Paste exported JSON here..."></textarea>
-          <button class="btn btn-success btn-sm" style="margin-top:8px" onclick="importData()">✅ Import & Apply</button>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -238,24 +201,21 @@ select{margin-bottom:20px}
 
 <script>
 const ADMIN_PW = "admin1234";
-const VOICE_SIG_PROVIDERS = ['Frontier', 'Optimum', 'Spectrum'];
-
+const VOICE_SIG_PROVIDERS = ['Frontier','Optimum','Spectrum'];
 const PL = {
-  ibex:"BundleDealer (Ibex)", concert:"Concert (AllConnect)", direct:"Direct Portal",
-  fpp:"Frontier Portal (FPP)", updater:"Updater", buyflow:"Optimum Buyflow",
-  quantum:"Quantum Portal", lumen:"CenturyLink Lumen Portal", dsi:"BundleDealer (DSI)"
+  ibex:"BundleDealer (Ibex)",concert:"Concert (AllConnect)",direct:"Direct Portal",
+  fpp:"Frontier Portal (FPP)",updater:"Updater",buyflow:"Optimum Buyflow",
+  quantum:"Quantum Portal",lumen:"CenturyLink Lumen Portal",dsi:"BundleDealer (DSI)"
 };
 const KEYS = Object.keys(PL);
-
 const PORTAL_URLS = {
-  ibex:    "https://www.bundledealer.com/#no-back",
-  dsi:     "https://www.bundledealer.com/#no-back",
-  concert: "https://concert.allconnect.com/salescenter/partnerentry/login.html",
-  fpp:     "https://partnerportal2.frontier.com/serviceability-check",
-  buyflow: "https://isaoptimum.suddenlink.com/isa-app/salesportal/#/vendor?vendorcode=mazamattcmarketingllc",
-
-  direct:  "https://shop.astound.com/",
-  viasat:  "https://buy.viasat.com/en-US/r/?customerType=New&affiliateID=Mazama&DID=200017132&PAID=6aa3fa94-17da-4640-850d-ee34bbde826c&CID=AFL_US_2524_YAI2T6YQPU",
+  ibex:"https://www.bundledealer.com/#no-back",
+  dsi:"https://www.bundledealer.com/#no-back",
+  concert:"https://concert.allconnect.com/salescenter/partnerentry/login.html",
+  fpp:"https://partnerportal2.frontier.com/serviceability-check",
+  buyflow:"https://isaoptimum.suddenlink.com/isa-app/salesportal/#/vendor?vendorcode=mazamattcmarketingllc",
+  direct:"https://shop.astound.com/",
+  viasat:"https://buy.viasat.com/en-US/r/?customerType=New&affiliateID=Mazama&DID=200017132&PAID=6aa3fa94-17da-4640-850d-ee34bbde836c&CID=AFL_US_2524_YAI2T6YQPU"
 };
 
 let D = {
@@ -291,26 +251,23 @@ let D = {
     {n:"Wired <100 Mbps",ibex:4,ibex_sp:14},{n:"Wired 100 Mbps+",ibex:5,ibex_sp:21},
     {n:"Wireless",ibex:3,ibex_sp:6},{n:"Fixed Wireless Unlimited",ibex:4,ibex_sp:12}],addons:{}},
   "Frontier":{internet:[
-    {n:"Copper (Concert)",concert:3,fpp:3,concert_sp:5,fpp_sp:5},
+    {n:"Copper",concert:3,fpp:3,concert_sp:5,fpp_sp:5},
     {n:"All Fiber (Concert)",concert:10,concert_sp:25},
-    {n:"Fiber 100 (FPP)",fpp:5,fpp_sp:18},
-    {n:"Fiber 500 (FPP)",fpp:6,fpp_sp:19},
-    {n:"Fiber 1G (FPP)",fpp:7,fpp_sp:20},
-    {n:"Fiber 2G (FPP)",fpp:8,fpp_sp:22},
-    {n:"Fiber 5G (FPP)",fpp:9,fpp_sp:25}],
+    {n:"Fiber 100",fpp:5,fpp_sp:18},{n:"Fiber 500",fpp:6,fpp_sp:19},
+    {n:"Fiber 1G",fpp:7,fpp_sp:20},{n:"Fiber 2G",fpp:8,fpp_sp:22},{n:"Fiber 5G",fpp:9,fpp_sp:25}],
   addons:{"TV (YouTube TV)":{concert:3,fpp:3,concert_sp:3,fpp_sp:3},"Voice":{concert:3,fpp:3,concert_sp:3,fpp_sp:3}},
   note:"For Fiber tiers use FPP. All video/mobile must be tied to Internet sale."},
   "Hawaiian Telecom":{internet:[{n:"<1 Gig",ibex:2,ibex_sp:5},{n:"1 Gig",ibex:4,ibex_sp:11}],addons:{}},
   "HughesNet":{internet:[{n:"Internet",ibex:4,ibex_sp:12}],addons:{"Voice":{ibex:1,ibex_sp:2}}},
   "Fidium":{internet:[{n:"100 Mbps",ibex:2,ibex_sp:6},{n:"300 Mbps",ibex:5,ibex_sp:7},{n:"1 Gig",ibex:4,ibex_sp:9},{n:"2 Gig",ibex:5,ibex_sp:10}],addons:{}},
   "Mediacom":{internet:[{n:"100 Mbps",concert:2,concert_sp:3},{n:"200 Mbps",concert:2,concert_sp:3},{n:"500 Mbps",concert:2,concert_sp:3},{n:"1 Gig",concert:2,concert_sp:3}],addons:{},note:"⚠️ Do NOT use Ibex ($0 commission, 0 points)"},
-  "Metronet":{internet:[{n:"<=500 MB (Ibex)",ibex:2,ibex_sp:6},{n:"1 Gig (DSI)",ibex:4,ibex_sp:15}],
-  addons:{"Phone (DSI)":{ibex:2,ibex_sp:3},"Whole Home Wifi":{ibex:1,ibex_sp:2}}},
+  "Metronet":{internet:[{n:"<=500 MB",ibex:2,ibex_sp:6},{n:"1 Gig",ibex:4,ibex_sp:15}],
+  addons:{"Phone":{ibex:2,ibex_sp:3},"Whole Home Wifi":{ibex:1,ibex_sp:2}}},
   "Optimum":{internet:[
     {n:"Under 300",buyflow:1.5,buyflow_sp:5},{n:"300",buyflow:7.5,buyflow_sp:10},
     {n:"500",buyflow:15,buyflow_sp:20},{n:"1 GB",buyflow:18,buyflow_sp:25},
     {n:"2 GB",buyflow:22.5,buyflow_sp:32},{n:"5 GB and Higher",buyflow:30,buyflow_sp:40}],
-  addons:{"TV - Basic":{buyflow:4.5,buyflow_sp:4},"TV - Extra":{buyflow:4.5,buyflow_sp:4},"TV - Everything":{buyflow:7.5,buyflow_sp:7},"TV - Entertainment":{buyflow:7.5,buyflow_sp:7},"TV - Core":{buyflow:7.5,buyflow_sp:7},"TV - Select":{buyflow:7.5,buyflow_sp:7},"TV - Premier":{buyflow:9,buyflow_sp:8},"Mobile Transfer - First Line":{buyflow:15,buyflow_sp:12},"Mobile - Additional Lines":{buyflow:7.5,buyflow_sp:4}},
+  addons:{"TV - Basic":{buyflow:4.5,buyflow_sp:4},"TV - Extra":{buyflow:4.5,buyflow_sp:4},"TV - Everything":{buyflow:7.5,buyflow_sp:7},"TV - Core":{buyflow:7.5,buyflow_sp:7},"TV - Select":{buyflow:7.5,buyflow_sp:7},"TV - Premier":{buyflow:9,buyflow_sp:8},"Mobile Transfer - First Line":{buyflow:15,buyflow_sp:12},"Mobile - Additional Lines":{buyflow:7.5,buyflow_sp:4}},
   note:"All video and mobile sales must be tied to an Internet sale"},
   "Quantum Fiber":{internet:[{n:"500 Mbps",quantum:4,quantum_sp:14},{n:"1 Gig",quantum:5,quantum_sp:17},{n:"2 Gig",quantum:7,quantum_sp:17}],addons:{}},
   "CenturyLink/Lumen":{internet:[
@@ -326,7 +283,7 @@ let D = {
   "Verizon":{internet:[
     {n:"Fios under 1 Gig",concert:3,concert_sp:4},{n:"Fios 1 Gig and higher",concert:5,concert_sp:12},
     {n:"5G",concert:4,concert_sp:11},{n:"4G",concert:2,concert_sp:5}],addons:{}},
-  "Viasat":{internet:[{n:"All Internet",direct:15,direct_sp:18}],addons:{"Voice":{direct:3,direct_sp:4}}},
+  "Viasat":{internet:[{n:"All Internet",viasat:15,viasat_sp:18}],addons:{"Voice":{viasat:3,viasat_sp:4}}},
   "Windstream Kinetic":{internet:[
     {n:"Kinetic Internet",ibex:5,ibex_sp:19},{n:"Kinetic Fiber",ibex:13,ibex_sp:32},
     {n:"Kinetic Fiber Gig",ibex:17,ibex_sp:40},{n:"Multi GIG",ibex:18,ibex_sp:40}],
@@ -343,7 +300,7 @@ let D = {
     {n:"Superfast - 1100 Mbps",concert:11,updater:7,concert_sp:16,updater_sp:10},
     {n:"Ultrafast - 1300 Mbps",concert:11,updater:7,concert_sp:16,updater_sp:10},
     {n:"Ultrafast - 2000 Mbps",concert:12,updater:8,concert_sp:16,updater_sp:10}],
-  addons:{"TV - Choice":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Popular":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Ultimate":{concert:6,updater:4,concert_sp:11,updater_sp:2},"Voice - Unlimited":{concert:3,updater:3,concert_sp:4,updater_sp:4},"Voice - Unlimited Saver":{concert:3,updater:null,concert_sp:2,updater_sp:null},"Voice - Unlimited Select":{concert:3,updater:null,concert_sp:2,updater_sp:null},"Home Security":{concert:12,updater:8,concert_sp:17,updater_sp:3}},
+  addons:{"TV - Choice":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Popular":{concert:3,updater:2,concert_sp:4,updater_sp:2},"TV - Ultimate":{concert:6,updater:4,concert_sp:11,updater_sp:2},"Voice - Unlimited":{concert:3,updater:3,concert_sp:4,updater_sp:4},"Home Security":{concert:12,updater:8,concert_sp:17,updater_sp:3}},
   note:"⚠️ Always use Concert — pays more across all tiers"},
   "Ziply":{internet:[
     {n:"Fiber <200 Mbps",dsi:1,dsi_sp:6},{n:"Fiber 200 Mbps - <1 Gig",dsi:2,dsi_sp:8},
@@ -351,162 +308,139 @@ let D = {
     {n:"Fiber 5 Gig",dsi:8,dsi_sp:24},{n:"Fiber 10 Gig",dsi:10,dsi_sp:28}],addons:{}}
 };
 
-try { const s = localStorage.getItem('commissionData'); if(s) D = JSON.parse(s); } catch(e){}
+try{const s=localStorage.getItem('commissionData');if(s)D=JSON.parse(s);}catch(e){}
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
-function switchTab(t, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b => { b.classList.remove('active'); b.classList.add('inactive'); });
-  document.getElementById('page-' + t).classList.add('active');
-  btn.classList.add('active'); btn.classList.remove('inactive');
-  if (t === 'admin' && document.getElementById('adminPanel').style.display === 'block') buildAdminUI();
+function switchTab(t,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>{b.classList.remove('active');b.classList.add('inactive');});
+  document.getElementById('page-'+t).classList.add('active');
+  btn.classList.add('active');btn.classList.remove('inactive');
+  if(t==='admin'&&document.getElementById('adminPanel').style.display==='block')buildAdminUI();
 }
 
 // ── LOOKUP ────────────────────────────────────────────────────────────────────
-let selAddons = [];
+let selAddons=[];
+function getConsent(){return document.getElementById('consentSel').value;}
 
-function getConsent() { return document.getElementById('consentSel').value; }
-
-function onConsentChange() {
-  const consent = getConsent();
-  document.getElementById('signatureNote').style.display = consent === 'signature' ? 'block' : 'none';
-  document.getElementById('providerSel').value = '';
-  document.getElementById('tierSel').style.display = 'none';
-  document.getElementById('tierLbl').style.display = 'none';
-  document.getElementById('addonsSection').style.display = 'none';
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('clearWrap').style.display = consent ? 'block' : 'none';
-  document.getElementById('emptyState').style.display = 'block';
-  selAddons = [];
+function onConsentChange(){
+  const c=getConsent();
+  document.getElementById('signatureNote').style.display=c==='signature'?'block':'none';
+  document.getElementById('providerSel').value='';
+  document.getElementById('tierSel').style.display='none';
+  document.getElementById('tierLbl').style.display='none';
+  document.getElementById('addonsSection').style.display='none';
+  document.getElementById('results').innerHTML='';
+  document.getElementById('clearWrap').style.display=c?'block':'none';
+  document.getElementById('emptyState').style.display='block';
+  selAddons=[];
   populateProviders();
 }
 
-function populateProviders() {
-  const ps = document.getElementById('providerSel');
-  const consent = getConsent();
-  const cur = ps.value;
-  ps.innerHTML = '<option value="">-- Choose a Provider --</option>';
-  if (!consent) return;
-  Object.keys(D).sort().forEach(p => {
-    if (consent === 'signature' && !VOICE_SIG_PROVIDERS.includes(p)) return;
-    const o = document.createElement('option'); o.value = p; o.textContent = p;
-    ps.appendChild(o);
+function populateProviders(){
+  const ps=document.getElementById('providerSel');
+  const c=getConsent();
+  ps.innerHTML='<option value="">-- Choose a Provider --</option>';
+  if(!c)return;
+  Object.keys(D).sort().forEach(p=>{
+    if(c==='signature'&&!VOICE_SIG_PROVIDERS.includes(p))return;
+    const o=document.createElement('option');o.value=p;o.textContent=p;ps.appendChild(o);
   });
-  if (cur && D[cur]) ps.value = cur;
 }
 
-function onProviderChange() {
-  selAddons = [];
-  const p = document.getElementById('providerSel').value;
-  const ts = document.getElementById('tierSel');
-  const tl = document.getElementById('tierLbl');
-  const as = document.getElementById('addonsSection');
-  const ac = document.getElementById('addonsContainer');
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('clearWrap').style.display = 'block';
-  document.getElementById('emptyState').style.display = p ? 'none' : 'block';
-  if (!p) { ts.style.display='none'; tl.style.display='none'; as.style.display='none'; return; }
-  const prov = D[p];
-  ts.innerHTML = '<option value="">-- Choose a Tier --</option>';
-  prov.internet.forEach(t => { const o=document.createElement('option'); o.value=t.n; o.textContent=t.n; ts.appendChild(o); });
-  ts.style.display = 'block'; tl.style.display = 'block';
-  ac.innerHTML = '';
-  const ak = Object.keys(prov.addons || {});
-  if (ak.length) {
-    ak.forEach(a => {
-      const btn = document.createElement('button'); btn.className='addon-btn'; btn.textContent=a;
-      btn.onclick = () => {
-        if (selAddons.includes(a)) selAddons = selAddons.filter(x => x !== a); else selAddons.push(a);
-        btn.classList.toggle('active', selAddons.includes(a));
-        render();
+function onProviderChange(){
+  selAddons=[];
+  const p=document.getElementById('providerSel').value;
+  const ts=document.getElementById('tierSel'),tl=document.getElementById('tierLbl');
+  const as=document.getElementById('addonsSection'),ac=document.getElementById('addonsContainer');
+  document.getElementById('results').innerHTML='';
+  document.getElementById('clearWrap').style.display='block';
+  document.getElementById('emptyState').style.display=p?'none':'block';
+  if(!p){ts.style.display='none';tl.style.display='none';as.style.display='none';return;}
+  const prov=D[p];
+  ts.innerHTML='<option value="">-- Choose a Tier --</option>';
+  prov.internet.forEach(t=>{const o=document.createElement('option');o.value=t.n;o.textContent=t.n;ts.appendChild(o);});
+  ts.style.display='block';tl.style.display='block';
+  ac.innerHTML='';
+  const ak=Object.keys(prov.addons||{});
+  if(ak.length){
+    ak.forEach(a=>{
+      const btn=document.createElement('button');btn.className='addon-btn';btn.textContent=a;
+      btn.onclick=()=>{
+        if(selAddons.includes(a))selAddons=selAddons.filter(x=>x!==a);else selAddons.push(a);
+        btn.classList.toggle('active',selAddons.includes(a));render();
       };
       ac.appendChild(btn);
     });
-    as.style.display = 'block';
-  } else { as.style.display = 'none'; }
+    as.style.display='block';
+  }else{as.style.display='none';}
   render();
 }
 
-function render() {
-  const p = document.getElementById('providerSel').value;
-  const tier = document.getElementById('tierSel').value;
-  const res = document.getElementById('results');
-  if (!p || !tier) { res.innerHTML = ''; return; }
-
-  const prov = D[p];
-  const tierObj = prov.internet.find(i => i.n === tier);
-  if (!tierObj) { res.innerHTML = ''; return; }
-
-  const consent = getConsent();
-
-  // Determine allowed portal keys
+function render(){
+  const p=document.getElementById('providerSel').value;
+  const tier=document.getElementById('tierSel').value;
+  const res=document.getElementById('results');
+  if(!p||!tier){res.innerHTML='';return;}
+  const prov=D[p];
+  const tierObj=prov.internet.find(i=>i.n===tier);
+  if(!tierObj){res.innerHTML='';return;}
+  const consent=getConsent();
   let allowedKeys;
-  if (consent === 'signature') {
-    if (p === 'Spectrum')      allowedKeys = ['ibex'];
-    else if (p === 'Optimum')  allowedKeys = ['buyflow'];
-    else if (p === 'Frontier') allowedKeys = ['concert', 'fpp'];
-    else                       allowedKeys = KEYS;
-  } else {
-    allowedKeys = KEYS;
-  }
-
-  // Build totals
-  const totals = {};
-  allowedKeys.forEach(k => {
-    if (tierObj[k] == null) return;
-    let comm = tierObj[k], sp = tierObj[k + '_sp'] || 0;
-    (selAddons || []).forEach(a => {
-      const ao = prov.addons[a];
-      if (ao && ao[k] != null) { comm += ao[k]; sp += ao[k + '_sp'] || 0; }
-    });
-    totals[k] = { comm, sp };
+  if(consent==='signature'){
+    if(p==='Spectrum')allowedKeys=['ibex'];
+    else if(p==='Optimum')allowedKeys=['buyflow'];
+    else if(p==='Frontier')allowedKeys=['concert','fpp'];
+    else allowedKeys=KEYS;
+  }else{allowedKeys=KEYS;}
+  const totals={};
+  allowedKeys.forEach(k=>{
+    if(tierObj[k]==null)return;
+    let comm=tierObj[k],sp=tierObj[k+'_sp']||0;
+    (selAddons||[]).forEach(a=>{const ao=prov.addons[a];if(ao&&ao[k]!=null){comm+=ao[k];sp+=ao[k+'_sp']||0;}});
+    totals[k]={comm,sp};
   });
+  const entries=Object.entries(totals);
+  if(!entries.length){res.innerHTML='<div class="note-box">⚠️ No portal data for this selection.</div>';return;}
+  let bk=null,bc=-1,bs=-1;
+  entries.forEach(([k,v])=>{if(v.comm>bc||(v.comm===bc&&v.sp>bs)){bc=v.comm;bs=v.sp;bk=k;}});
+  let wk=null,wc=Infinity;
+  if(entries.length>1)entries.forEach(([k,v])=>{if(v.comm<wc){wc=v.comm;wk=k;}});
+  const lc=(bk&&wk&&bk!==wk)?bc-wc:0;
+  const ls=(bk&&wk&&bk!==wk)?bs-(totals[wk]?.sp||0):0;
+  const sigLabel=p==='Spectrum'?'BundleDealer (Ibex)':p==='Optimum'?'Optimum Buyflow':'Concert (AllConnect) / FPP';
+  const consentLabel=consent==='signature'
+    ?`<div style="margin-top:6px;font-size:11px;color:#6ee7b7">🔴 Voice Signature — ${sigLabel}</div>`
+    :`<div style="margin-top:6px;font-size:11px;color:#6ee7b7">📞 Voice Consent</div>`;
+  const portalUrl=PORTAL_URLS[bk]||null;
+  const openBtn=portalUrl
+    ?`<a href="${portalUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 18px;background:#38bdf8;color:#0f172a;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">🚀 Open Portal</a>`:'';
 
-  const entries = Object.entries(totals);
-  if (entries.length === 0) { res.innerHTML = '<div class="note-box">⚠️ No portal data available for this selection.</div>'; return; }
-
-  let bk=null, bc=-1, bs=-1;
-  entries.forEach(([k,v]) => { if (v.comm > bc || (v.comm === bc && v.sp > bs)) { bc=v.comm; bs=v.sp; bk=k; } });
-  let wk=null, wc=Infinity;
-  if (entries.length > 1) entries.forEach(([k,v]) => { if (v.comm < wc) { wc=v.comm; wk=k; } });
-  const lc = (bk && wk && bk !== wk) ? bc - wc : 0;
-  const ls = (bk && wk && bk !== wk) ? bs - (totals[wk]?.sp || 0) : 0;
-
-  const sigPortalLabel = p==='Spectrum' ? 'BundleDealer (Ibex)' : p==='Optimum' ? 'Optimum Buyflow' : 'Concert (AllConnect) / FPP';
-  const consentLabel = consent === 'signature'
-    ? `<div style="margin-top:6px;font-size:11px;color:#6ee7b7">🔴 Voice Signature — ${sigPortalLabel}</div>`
-    : `<div style="margin-top:6px;font-size:11px;color:#6ee7b7">📞 Voice Consent</div>`;
-
-  const portalUrl = PORTAL_URLS[bk] || null;
-  const openBtn = portalUrl
-    ? `<a href="${portalUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 18px;background:#38bdf8;color:#0f172a;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#7dd3fc'" onmouseout="this.style.background='#38bdf8'">🚀 Open Portal</a>`
-    : '';
-
-  let h = `<div class="best-banner"><div style="font-size:32px">🏆</div><div style="flex:1">
+  let h=`<div class="best-banner"><div style="font-size:32px">🏆</div><div style="flex:1">
     <div class="best-tag">BEST PORTAL TO USE</div>
     <div class="best-name">${PL[bk]}</div>
     <div class="best-vals">
-      <div class="best-val"><span class="num">${bc.toFixed(2)}</span><span class="unit">commission</span></div>
+      <div class="best-val"><span class="num">$${bc.toFixed(2)}</span><span class="unit">commission</span></div>
       <div class="best-val"><span class="num" style="color:#fbbf24">${bs}</span><span class="unit pts">sales points</span></div>
     </div>${consentLabel}${openBtn}</div></div>`;
 
-  h += `<div class="card"><div class="sec-title">PORTAL COMPARISON</div>
+  h+=`<div class="card"><div class="sec-title">PORTAL COMPARISON</div>
     <div style="display:grid;grid-template-columns:1fr 120px 110px;gap:8px;padding:6px 10px;margin-bottom:4px">
       <span class="col-h">PORTAL</span><span class="col-h r">COMMISSION</span><span class="col-h r">SALES PTS</span>
     </div>`;
-  entries.forEach(([k,v]) => {
-    const ib=k===bk, iw=k===wk&&entries.length>1;
+  entries.forEach(([k,v])=>{
+    const ib=k===bk,iw=k===wk&&entries.length>1;
     const c=ib?'best':iw?'worst':'neutral';
-    h += `<div class="p-row ${c}">
+    h+=`<div class="p-row ${c}">
       <span class="pn ${c}">${ib?'✅ ':iw?'❌ ':''}${PL[k]}</span>
       <span class="pv ${c}">$${v.comm.toFixed(2)}</span>
-      <span class="ps ${c}">⭐ ${v.sp}</span>
+      <span class="ps2 ${c}">⭐ ${v.sp}</span>
     </div>`;
   });
-  h += `</div>`;
+  h+=`</div>`;
 
-  if (entries.length > 1 && lc > 0) {
-    h += `<div class="loss-card"><div class="loss-title">⚠️ WHAT YOU LOSE USING THE WRONG PORTAL</div>
+  if(entries.length>1&&lc>0){
+    h+=`<div class="loss-card"><div class="loss-title">⚠️ WHAT YOU LOSE USING THE WRONG PORTAL</div>
       <div class="loss-grid">
         <div class="loss-box"><div class="loss-box-t">💸 LOST COMMISSION</div><div class="loss-num">-$${lc.toFixed(2)}</div><div class="loss-sub">per sale using ${PL[wk]}</div></div>
         <div class="loss-box"><div class="loss-box-t">⭐ LOST SALES POINTS</div><div class="loss-num">-${ls} pts</div><div class="loss-sub">per sale using ${PL[wk]}</div></div>
@@ -516,169 +450,214 @@ function render() {
       </div></div>`;
   }
 
-  h += `<div class="card"><div class="sec-title">BREAKDOWN (BEST PORTAL)</div>
+  h+=`<div class="card"><div class="sec-title">BREAKDOWN (BEST PORTAL)</div>
     <div style="display:grid;grid-template-columns:1fr 90px 90px;gap:8px;padding:4px 0 8px">
       <span style="font-size:11px;color:#64748b;font-weight:700">ITEM</span>
       <span style="font-size:11px;color:#64748b;font-weight:700;text-align:right">COMM.</span>
       <span style="font-size:11px;color:#64748b;font-weight:700;text-align:right">PTS</span>
     </div>
     <div class="bd-row"><span class="bi">🌐 Internet (${tier})</span><span class="bc">$${(tierObj[bk]||0).toFixed(2)}</span><span class="bsp">⭐ ${tierObj[bk+'_sp']||0}</span></div>`;
-  (selAddons||[]).forEach(a => {
-    const ao=prov.addons[a]; const v=ao?(ao[bk]??0):0; const s=ao?(ao[bk+'_sp']??0):0;
-    h += `<div class="bd-row"><span class="bi">➕ ${a}</span><span class="bc">$${v.toFixed(2)}</span><span class="bsp">⭐ ${s}</span></div>`;
+  (selAddons||[]).forEach(a=>{
+    const ao=prov.addons[a];const v=ao?(ao[bk]??0):0;const s=ao?(ao[bk+'_sp']??0):0;
+    h+=`<div class="bd-row"><span class="bi">➕ ${a}</span><span class="bc">$${v.toFixed(2)}</span><span class="bsp">⭐ ${s}</span></div>`;
   });
-  h += `<div class="bd-row tot"><span class="bi t">TOTAL</span><span class="bc t">$${bc.toFixed(2)}</span><span class="bsp t">⭐ ${bs}</span></div></div>`;
-  if (prov.note) h += `<div class="note-box">⚠️ ${prov.note}</div>`;
-
-  res.innerHTML = h;
+  h+=`<div class="bd-row tot"><span class="bi t">TOTAL</span><span class="bc t">$${bc.toFixed(2)}</span><span class="bsp t">⭐ ${bs}</span></div></div>`;
+  if(prov.note)h+=`<div class="note-box">⚠️ ${prov.note}</div>`;
+  res.innerHTML=h;
 }
 
-function clearAll() {
-  document.getElementById('consentSel').value = '';
-  document.getElementById('signatureNote').style.display = 'none';
-  document.getElementById('providerSel').innerHTML = '<option value="">-- Choose a Provider --</option>';
-  document.getElementById('tierSel').style.display = 'none';
-  document.getElementById('tierLbl').style.display = 'none';
-  document.getElementById('addonsSection').style.display = 'none';
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('clearWrap').style.display = 'none';
-  document.getElementById('emptyState').style.display = 'block';
-  selAddons = [];
+function clearAll(){
+  document.getElementById('consentSel').value='';
+  document.getElementById('signatureNote').style.display='none';
+  document.getElementById('providerSel').innerHTML='<option value="">-- Choose a Provider --</option>';
+  document.getElementById('tierSel').style.display='none';
+  document.getElementById('tierLbl').style.display='none';
+  document.getElementById('addonsSection').style.display='none';
+  document.getElementById('results').innerHTML='';
+  document.getElementById('clearWrap').style.display='none';
+  document.getElementById('emptyState').style.display='block';
+  selAddons=[];
 }
 
 // ── ADMIN ─────────────────────────────────────────────────────────────────────
-function checkPw() {
-  if (document.getElementById('pwInput').value === ADMIN_PW) {
-    document.getElementById('adminGate').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
+function checkPw(){
+  if(document.getElementById('pwInput').value===ADMIN_PW){
+    document.getElementById('adminGate').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
     buildAdminUI();
-  } else {
-    document.getElementById('pwErr').textContent = '❌ Incorrect password. Try again.';
-    document.getElementById('pwInput').value = '';
+  }else{
+    document.getElementById('pwErr').textContent='❌ Incorrect password.';
+    document.getElementById('pwInput').value='';
   }
 }
-function lockAdmin() {
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('adminGate').style.display = 'flex';
-  document.getElementById('pwInput').value = '';
-  document.getElementById('pwErr').textContent = '';
+function lockAdmin(){
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminGate').style.display='flex';
+  document.getElementById('pwInput').value='';
+  document.getElementById('pwErr').textContent='';
 }
 
-function buildAdminUI() {
-  const list = document.getElementById('adminProvList');
-  list.innerHTML = '';
-  Object.keys(D).sort().forEach(pName => {
-    const prov = D[pName];
-    const activeKeys = KEYS.filter(k => prov.internet.some(t => t[k] != null));
-    const card = document.createElement('div'); card.className = 'prov-card';
-    const safeId = pName.replace(/\W/g,'_');
-    card.innerHTML = `
-      <div class="prov-card-hdr" onclick="togglePC(this,'${safeId}')">
+function buildAdminUI(){
+  const list=document.getElementById('adminProvList');
+  list.innerHTML='';
+  Object.keys(D).sort().forEach(pName=>{
+    const prov=D[pName];
+    const activeKeys=KEYS.filter(k=>prov.internet.some(t=>t[k]!=null));
+    const div=document.createElement('div');div.className='prov-card';
+    const sid=pName.replace(/\W/g,'_');
+    const badges=activeKeys.map(k=>`<span class="badge ${k==='ibex'||k==='dsi'?'badge-ibex':k==='concert'?'badge-concert':'badge-other'}">${PL[k]}</span>`).join('');
+    div.innerHTML=`
+      <div class="prov-card-hdr" onclick="togglePC('${sid}',this)">
         <div>
           <div class="prov-card-title">📡 ${pName}</div>
-          <div class="prov-card-meta">${activeKeys.map(k=>`<span class="tag ${k==='ibex'?'tag-ibex':k==='concert'?'tag-concert':'tag-other'}">${PL[k]}</span>`).join(' ')} &nbsp;${prov.internet.length} tiers · ${Object.keys(prov.addons||{}).length} add-ons</div>
+          <div class="prov-card-meta" style="margin-top:4px">${badges}</div>
         </div>
         <span style="color:#64748b;font-size:18px">▼</span>
       </div>
-      <div class="prov-card-body" id="body-${safeId}">${buildProvEditor(pName,prov)}</div>`;
-    list.appendChild(card);
+      <div class="prov-card-body" id="body-${sid}"></div>`;
+    list.appendChild(div);
   });
 }
 
-function buildProvEditor(pName, prov) {
-  const ak = KEYS.filter(k => prov.internet.some(t=>t[k]!=null)||Object.values(prov.addons||{}).some(a=>a[k]!=null));
-  const sid = pName.replace(/\W/g,'_');
-  let h = `<div class="sec-sub">INTERNET TIERS</div>
-    <table class="tier-table"><tr><th>Tier Name</th>${ak.map(k=>`<th>${PL[k]}<br><span style="color:#f59e0b;font-size:10px">$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts</span></th>`).join('')}<th></th></tr>`;
-  prov.internet.forEach((t,i) => {
-    h += `<tr><td><input class="tn-input" type="text" value="${t.n}" onchange="D['${pName}'].internet[${i}].n=this.value"/></td>
-      ${ak.map(k=>`<td style="display:flex;gap:4px;align-items:center">
-        <input type="number" step="0.01" value="${t[k]??''}" placeholder="—" onchange="D['${pName}'].internet[${i}]['${k}']=this.value===''?null:parseFloat(this.value)" style="width:68px"/>
-        <input type="number" value="${t[k+'_sp']??''}" placeholder="—" onchange="D['${pName}'].internet[${i}]['${k}_sp']=this.value===''?null:parseInt(this.value)" style="width:52px"/>
-      </td>`).join('')}
-      <td><button class="btn btn-danger btn-sm" onclick="D['${pName}'].internet.splice(${i},1);refreshPC('${pName}')">✕</button></td></tr>`;
-  });
-  h += `</table><button class="btn btn-primary btn-sm" onclick="addTier('${pName}')">➕ Add Tier</button>`;
-  if (Object.keys(prov.addons||{}).length) {
-    h += `<div class="sec-sub" style="margin-top:16px">ADD-ONS</div>
-      <table class="tier-table"><tr><th>Add-on Name</th>${ak.map(k=>`<th>${PL[k]}<br><span style="color:#f59e0b;font-size:10px">$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts</span></th>`).join('')}<th></th></tr>`;
-    Object.keys(prov.addons).forEach(aName => {
-      const a = prov.addons[aName];
-      h += `<tr><td><input class="tn-input" type="text" value="${aName}" onchange="renameAddon('${pName}','${aName}',this.value)"/></td>
-        ${ak.map(k=>`<td style="display:flex;gap:4px;align-items:center">
-          <input type="number" step="0.01" value="${a[k]??''}" placeholder="—" onchange="D['${pName}'].addons['${aName}']['${k}']=this.value===''?null:parseFloat(this.value)" style="width:68px"/>
-          <input type="number" value="${a[k+'_sp']??''}" placeholder="—" onchange="D['${pName}'].addons['${aName}']['${k}_sp']=this.value===''?null:parseInt(this.value)" style="width:52px"/>
-        </td>`).join('')}
-        <td><button class="btn btn-danger btn-sm" onclick="delete D['${pName}'].addons['${aName}'];refreshPC('${pName}')">✕</button></td></tr>`;
-    });
-    h += `</table>`;
+function togglePC(sid,hdr){
+  const body=document.getElementById('body-'+sid);
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  hdr.querySelector('span').textContent=isOpen?'▼':'▲';
+  if(!isOpen&&!body.innerHTML.trim()){
+    const pName=Object.keys(D).find(p=>p.replace(/\W/g,'_')===sid);
+    if(pName)body.innerHTML=buildProvEditor(pName);
   }
-  h += `<button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addAddon('${pName}')">➕ Add Add-on</button>`;
-  h += `<div class="sec-sub" style="margin-top:16px">NOTE / WARNING</div>
-    <input class="note-input" type="text" value="${prov.note||''}" placeholder="Optional note..." onchange="D['${pName}'].note=this.value"/>`;
-  h += `<div style="margin-top:16px"><button class="btn btn-danger btn-sm" onclick="deleteProv('${pName}')">🗑 Delete ${pName}</button></div>`;
+}
+
+function buildProvEditor(pName){
+  const prov=D[pName];
+  const activeKeys=KEYS.filter(k=>prov.internet.some(t=>t[k]!=null)||Object.values(prov.addons||{}).some(a=>a[k]!=null));
+  const sid=pName.replace(/\W/g,'_');
+
+  // Build portal options for selects
+  const portalOpts=KEYS.map(k=>`<option value="${k}">${PL[k]}</option>`).join('');
+
+  let h=`<div class="sec-sub">📶 INTERNET TIERS</div>`;
+
+  prov.internet.forEach((t,i)=>{
+    const tierKey=activeKeys[0]||'ibex';
+    h+=`<div class="tier-row" style="grid-template-columns:1fr" id="tier-${sid}-${i}">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-bottom:10px">
+        <div>
+          <div class="field-lbl">TIER NAME</div>
+          <input type="text" value="${t.n}" onchange="D['${pName}'].internet[${i}].n=this.value" style="font-weight:600;color:#38bdf8"/>
+        </div>
+        <button class="btn btn-danger btn-sm" style="margin-top:16px" onclick="removeTier('${pName}',${i})">🗑 Remove</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">`;
+    activeKeys.forEach(k=>{
+      if(t[k]==null&&t[k+'_sp']==null)return;
+      h+=`<div class="portal-block">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div class="portal-block-title" style="margin-bottom:0">${PL[k]}</div>
+          <button class="btn btn-danger btn-sm" style="padding:3px 8px;font-size:11px" onclick="removePortalFromTier('${pName}',${i},'${k}')">✕ Remove</button>
+        </div>
+        <div class="portal-entry">
+          <div><div class="field-lbl">💵 COMMISSION ($)</div>
+            <input type="number" step="0.01" value="${t[k]??''}" placeholder="0.00" onchange="D['${pName}'].internet[${i}]['${k}']=this.value===''?null:parseFloat(this.value)"/>
+          </div>
+          <div><div class="field-lbl">⭐ SALES POINTS</div>
+            <input type="number" value="${t[k+'_sp']??''}" placeholder="0" onchange="D['${pName}'].internet[${i}]['${k}_sp']=this.value===''?null:parseInt(this.value)"/>
+          </div>
+        </div>
+      </div>`;
+    });
+    h+=`</div></div>`;
+  });
+
+  h+=`<button class="btn btn-primary btn-sm" style="margin-top:4px" onclick="addTier('${pName}')">➕ Add Internet Tier</button>`;
+
+  // Add-ons
+  if(Object.keys(prov.addons||{}).length){
+    h+=`<div class="sec-sub" style="margin-top:20px">➕ ADD-ONS</div>`;
+    Object.keys(prov.addons).forEach(aName=>{
+      const a=prov.addons[aName];
+      const aKeys=activeKeys.filter(k=>a[k]!=null||a[k+'_sp']!=null);
+      h+=`<div class="tier-row" style="grid-template-columns:1fr">
+        <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-bottom:10px">
+          <div><div class="field-lbl">ADD-ON NAME</div>
+            <input type="text" value="${aName}" onchange="renameAddon('${pName}','${aName}',this.value)" style="color:#fbbf24"/>
+          </div>
+          <button class="btn btn-danger btn-sm" style="margin-top:16px" onclick="removeAddon('${pName}','${aName}')">🗑 Remove</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">`;
+      aKeys.forEach(k=>{
+        h+=`<div class="portal-block">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <div class="portal-block-title" style="margin-bottom:0">${PL[k]}</div>
+            <button class="btn btn-danger btn-sm" style="padding:3px 8px;font-size:11px" onclick="removePortalFromAddon('${pName}','${aName}','${k}')">✕ Remove</button>
+          </div>
+          <div class="portal-entry">
+            <div><div class="field-lbl">💵 COMMISSION ($)</div>
+              <input type="number" step="0.01" value="${a[k]??''}" placeholder="0.00" onchange="D['${pName}'].addons['${aName}']['${k}']=this.value===''?null:parseFloat(this.value)"/>
+            </div>
+            <div><div class="field-lbl">⭐ SALES POINTS</div>
+              <input type="number" value="${a[k+'_sp']??''}" placeholder="0" onchange="D['${pName}'].addons['${aName}']['${k}_sp']=this.value===''?null:parseInt(this.value)"/>
+            </div>
+          </div>
+        </div>`;
+      });
+      h+=`</div></div>`;
+    });
+  }
+  h+=`<button class="btn btn-primary btn-sm" style="margin-top:4px" onclick="addAddon('${pName}')">➕ Add Add-on</button>`;
+
+  // Note
+  h+=`<div class="sec-sub" style="margin-top:20px">📝 NOTE / WARNING</div>
+    <input class="note-input" type="text" value="${prov.note||''}" placeholder="Optional note shown to reps..." onchange="D['${pName}'].note=this.value"/>
+    <div style="margin-top:12px">
+      <button class="btn btn-danger btn-sm" onclick="deleteProv('${pName}')">🗑 Delete ${pName}</button>
+    </div>`;
   return h;
 }
 
-function togglePC(hdr, id) {
-  const body = document.getElementById('body-'+id);
-  body.classList.toggle('open');
-  hdr.querySelector('span').textContent = body.classList.contains('open') ? '▲' : '▼';
+function removePortalFromTier(pName,i,k){
+  if(!confirm(`Remove ${PL[k]} from "${D[pName].internet[i].n}"?`))return;
+  delete D[pName].internet[i][k];
+  delete D[pName].internet[i][k+'_sp'];
+  refreshPC(pName);
 }
-function refreshPC(pName) {
-  const id = 'body-'+pName.replace(/\W/g,'_');
-  const body = document.getElementById(id);
-  if (body) { body.innerHTML = buildProvEditor(pName, D[pName]); body.classList.add('open'); }
+function removePortalFromAddon(pName,aName,k){
+  if(!confirm(`Remove ${PL[k]} from add-on "${aName}"?`))return;
+  delete D[pName].addons[aName][k];
+  delete D[pName].addons[aName][k+'_sp'];
+  refreshPC(pName);
 }
-function renameAddon(pName, oldName, newName) {
-  const val = D[pName].addons[oldName]; delete D[pName].addons[oldName]; D[pName].addons[newName] = val;
+function removeTier(pName,i){D[pName].internet.splice(i,1);refreshPC(pName);}
+function addTier(pName){
+  const ak=KEYS.filter(k=>D[pName].internet.some(t=>t[k]!=null));
+  const t={n:"New Tier"};ak.forEach(k=>{t[k]=0;t[k+'_sp']=0;});
+  D[pName].internet.push(t);refreshPC(pName);
 }
-function addTier(pName) {
-  const ak = KEYS.filter(k => D[pName].internet.some(t=>t[k]!=null));
-  const t = {n:"New Tier"}; ak.forEach(k=>{t[k]=0;t[k+'_sp']=0;});
-  D[pName].internet.push(t); refreshPC(pName);
+function removeAddon(pName,aName){delete D[pName].addons[aName];refreshPC(pName);}
+function addAddon(pName){
+  const ak=KEYS.filter(k=>D[pName].internet.some(t=>t[k]!=null));
+  const a={};ak.forEach(k=>{a[k]=0;a[k+'_sp']=0;});
+  D[pName].addons=D[pName].addons||{};D[pName].addons["New Add-on"]=a;refreshPC(pName);
 }
-function addAddon(pName) {
-  const ak = KEYS.filter(k => D[pName].internet.some(t=>t[k]!=null));
-  const a = {}; ak.forEach(k=>{a[k]=0;a[k+'_sp']=0;});
-  D[pName].addons = D[pName].addons||{}; D[pName].addons["New Add-on"]=a; refreshPC(pName);
+function renameAddon(pName,oldName,newName){
+  const val=D[pName].addons[oldName];delete D[pName].addons[oldName];D[pName].addons[newName]=val;
 }
-function deleteProv(pName) {
-  if (!confirm(`Delete ${pName}?`)) return; delete D[pName]; buildAdminUI(); showToast(`${pName} deleted`);
+function deleteProv(pName){
+  if(!confirm(`Delete ${pName}?`))return;delete D[pName];buildAdminUI();showToast(`${pName} deleted`);
 }
-function toggleAddProv() { document.getElementById('addProvForm').classList.toggle('open'); }
-function addProvider() {
-  const name=document.getElementById('newPN').value.trim();
-  const key=document.getElementById('newPKey').value;
-  const tName=document.getElementById('newTN').value.trim()||'Tier 1';
-  const tComm=parseFloat(document.getElementById('newTC').value)||0;
-  const tSP=parseInt(document.getElementById('newTS').value)||0;
-  if(!name){alert('Please enter a provider name.');return;}
-  const tier={n:tName}; tier[key]=tComm; tier[key+'_sp']=tSP;
-  D[name]={internet:[tier],addons:{},note:''};
-  document.getElementById('addProvForm').classList.remove('open');
-  buildAdminUI(); populateProviders(); showToast(`${name} added!`);
+function refreshPC(pName){
+  const sid=pName.replace(/\W/g,'_');
+  const body=document.getElementById('body-'+sid);
+  if(body){body.innerHTML=buildProvEditor(pName);}
 }
-function saveChanges() {
+function saveChanges(){
   try{localStorage.setItem('commissionData',JSON.stringify(D));}catch(e){}
-  populateProviders(); showToast('✅ Changes saved & applied!');
+  populateProviders();showToast('✅ Changes saved & applied!');
 }
-function exportData() {
-  navigator.clipboard.writeText(JSON.stringify(D,null,2)).then(()=>showToast('📋 JSON copied to clipboard!'));
-}
-function toggleImport() {
-  const b=document.getElementById('importBox'); b.style.display=b.style.display==='none'?'block':'none';
-}
-function importData() {
-  try {
-    D=JSON.parse(document.getElementById('importTA').value.trim());
-    localStorage.setItem('commissionData',JSON.stringify(D));
-    populateProviders(); buildAdminUI(); showToast('✅ Data imported!');
-    document.getElementById('importBox').style.display='none';
-  } catch(e){alert('❌ Invalid JSON.');}
-}
-function showToast(msg) {
-  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2800);
 }
 </script>
